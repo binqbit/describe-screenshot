@@ -15,8 +15,12 @@ pip install -r requirements.txt
 ### Commands
 - Start the tool: `describe-screenshot`
 
+### Flags
+- `--admin` - Run the tool with admin privileges
+- `-v` - Allow voice output
+
 ### How To Use
-- Run `describe-screenshot`
+- Run `describe-screenshot -v`
 - Take a screenshot
 - The tool will automatically translate and describe the information in the screenshot.
 
@@ -25,4 +29,4 @@ pip install -r requirements.txt
 - Go to shortcuts
 - Add new shortcut
 - Name: `Describe Screenshot`
-- Command: `describe-screenshot --admin`
+- Command: `describe-screenshot --admin -v`

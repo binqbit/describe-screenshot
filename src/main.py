@@ -83,14 +83,16 @@ Required use provided language for the description: `{LANGUAGE}`.
     return res
 
 def main():
+    is_voice = "-v" in os.sys.argv
     while True:
         screenshot = listen_screenshot()
         result = describe_screenshot(screenshot)
         print_tab("Text", result["text"])
         print_tab("Screenshot Description", result["no_text"])
         print_tab("Content Description", result["description"])
-        text_to_audio(result["description"], TEMP_FILE)
-        play_audio(TEMP_FILE)
+        if is_voice:
+            text_to_audio(result["description"], TEMP_FILE)
+            play_audio(TEMP_FILE)
         print()
 
 if __name__ == "__main__":
