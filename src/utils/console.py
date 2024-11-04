@@ -1,17 +1,28 @@
+symbols = [' ', ',', '!', '?', ':', ';', '(', ')', '[', ']', '{', '}', '<', '>', '=', '+', '-', '*', '/', '&', '%', '@', '#', '$', '^', '~', '|', '\\']
+
+def find_last_char(text):
+    i = -1
+    for symbol in symbols:
+        j = text.rfind(symbol)
+        if j > i:
+            i = j
+    return i
 
 def print_tab(name, text):
     print("-" * (len(name) + 4))
     print(f"| {name} |")
 
-    list = text.split("\n")
-    new_list = []
-    for line in list:
+    lines = []
+    for line in text.split("\n"):
         while len(line) > 96:
-            new_list.append(line[:96])
-            line = line[96:]
-        new_list.append(line)
+            i = find_last_char(line[:96])
+            if i == -1:
+                i = 96
+            lines.append(line[:i])
+            line = line[i:]
+        lines.append(line)
     
     print("-" * 100)
-    for line in new_list:
+    for line in lines:
         print("| " + line.ljust(96) + " |")
     print("-" * 100)
