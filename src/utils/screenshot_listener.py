@@ -27,6 +27,8 @@ def listen_screenshot():
     global last_screenshot
     if last_screenshot is None:
         last_screenshot = get_screenshot()
+        if last_screenshot is None:
+            last_screenshot = b""
 
     while True:
         image_bytes = get_screenshot()
