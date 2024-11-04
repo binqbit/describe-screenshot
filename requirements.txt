@@ -1,0 +1,6 @@
+pyperclip
+pillow
+base64
+gTTS
+soundfile
+pygame
