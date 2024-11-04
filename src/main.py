@@ -36,10 +36,12 @@ Requirements:
     - The field should contain a summarized version of the description without using special characters.
     - You have to describe the content, but do not mention the content itself.
     - You should not focus on different elements that are already clear. You only need to convey the very essence of what is happening.
-    - If the content contains text information, which is not in the language specified by the user, it is necessary to translate this information and convey the essence of what is happening. 
-    - You need to summarize the information, but do not miss the essence itself, so that everything is as clear as possible. 
-    - It is important to convey information that can be very useful to the user. 
-    - It is important to prioritize the information, for example, the one that the user may not understand on the screenshot. 
+    - If the content contains text information, which is not in the language specified by the user, it is necessary to translate this information and convey the essence of what is happening.
+    - You need to summarize the information, but do not miss the essence itself, so that everything is as clear as possible.
+    - It is important to convey information that can be very useful to the user.
+    - It is important to prioritize the information, for example, the one that the user may not understand on the screenshot.
+    - To improve the quality of the user's understanding, you should translate everything you want to convey to the user, even the name of the file. You should not say the original name of the file, you should describe this file.
+    - Nothing should remain in other languages. Everything should be translated and voiced in the user's language.
     - Use the provided language.
 
 Example:
