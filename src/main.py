@@ -58,6 +58,7 @@ Result should be a JSON object with the following structure:
 - text:
     - All the text information from the screenshot should be extracted.
     - Since the information on the screen is very specific, you need to structure this information in a more understandable format.
+    - All information must be translated into the user's language: `{LANGUAGE}`.
     - Use the user language: `{LANGUAGE}`.
 
 - no_text:
@@ -73,14 +74,15 @@ Result should be a JSON object with the following structure:
     - Use the user language: `{LANGUAGE}`.
     
 - voice:
-    - The description of what is happening on the screen without special characters.
+    - A summary description of the content without special characters and unnecessary information, such as:
+        - file names, paths, commands, tools, etc. That is, the information that is clear and without description.
     - It is important to describe only useful information. Also, do not describe visual information, because the user already sees it.
     - This is almost the same as the description of what is happening on the screen, but with the omission of unimportant points that are not necessary for understanding. For example:
         - file names: You should just describe what kind of file it is. For example, instead of 'main.py', you should say 'Python script'.
         - paths: You should describe the path in words. For example, instead of '/home/user', you should say 'home user'.
         - commands: You should describe the command in words. For example, instead of 'cd /home/user', you should say 'change directory to home user'.
         - tools: You should describe the tool in words. For example, instead of 'Node.js', you should say 'Node'.
-        - etc.
+        - etc. But once again, it is important to emphasize that it is not necessary to say information that is already clear.
     - You should not use different specific symbols. You have to describe everything in words. For example:
         - '$' symbol: 'dollar'
         - '%' symbol: 'percent'
@@ -102,8 +104,7 @@ Result should be a JSON object with the following structure:
         - 'npm': Node package manager
         - 'MongoDB': Mongo database
         - 'React.js': React framework
-        - etc.
-    - You have to translate all the names of the tools, files, commands, that is, you have to translate everything into the user language, and nothing should remain in the original.
+        - etc. If this information is not so important, then it would be better to skip it at all.
     - You have to find an analog of the description of the word, if it is difficult to pronounce. For example:
         - NFT: Non-fungible token
         - usdt: Tether coin
@@ -112,35 +113,36 @@ Result should be a JSON object with the following structure:
         - utils: utilities
         - config: configuration
         - xlsx: Excel file
-        - etc.
+        - etc. If the name is incomprehensible or unpopular, it would be better to simply describe it with words that are easier for the user to understand.
     - You should describe to the user the information that he is not able to understand. For example, such information as numbers, some names, he already understands it in principle. It is enough to simply mention it in some easy way, but not to speak directly as it is.
+    - All information must be translated into the user's language: `{LANGUAGE}`.
     - Use the user language: `{LANGUAGE}`.
 
 ### Examples
 
 #### Example 1
-- text: "> python main.py --file ./config/test/data.txt\nData successfully loaded from the file data.txt\nData Size: 100.25kb"
-- no_text: "PowerShell window with the command"
-- description: "The user runs the main.py script with the file ./config/test/data.txt. The data is successfully loaded from the file data.txt with a size of 100.25kb."
-- voice: "The user runs the main Python script with the file data text. The data is successfully loaded from the file data text with a size of one hundred point twenty-five kilobytes."
+- text: "> python main.py --file ./config/test/data.txt\\nData successfully loaded from the file data.txt\\nData Size: 100.25kb"
+- no_text: "PowerShell window with the Python script"
+- description: "The user runs the main.py with the file ./config/test/data.txt. The data is successfully loaded from the file data.txt with a size of 100.25kb."
+- voice: "The user runs the Python script with the text file. The data is successfully loaded from the file with a size of one hundred point twenty-five kilobytes."
 
 #### Example 2
-- text: "Node.js v14.17.0\nWelcome to Node.js v14.17.0.\nType 'help' for more information."
+- text: "Node.js v14.17.0\\nWelcome to Node.js v14.17.0.\\nType 'help' for more information."
 - no_text: "Terminal with the Node.js command"
 - description: "The user has installed Node.js version 14.17.0 and the system welcomes the user with the message to type 'help' for more information."
-- voice: "The user has installed Node version fourteen point seventeen zero and the system welcomes the user with the message to type help for more information."
+- voice: "The user has installed Node version fourteen seventeen zero and the system welcomes the user with the message to type help for more information."
 
 #### Example 3
 - text: "[2021-07-15 12:00:00] [INFO] sign_data: {{ amount: 2.47, currency: 'USDT', payment: 'Ethereum' }}"
-- no_text: "Server log with information"
+- no_text: "Terminal with log information from Docker containers"
 - description: "The log contains information with the date 2021-07-15 12:00:00 and the message about signing a payment transaction of 2.47 USDT in the Ethereum network."
-- voice: "The log contains information with the date two thousand twenty-one July fifteen twelve o'clock and the message about signing a payment transaction of two point forty-seven Tether coin in the Ethereum network."
+- voice: "The log contains information with the date two thousand twenty-one July fifteen twelve o'clock and the message about signing a payment transaction of two forty-seven Tether coin in the Ethereum network."
 
 #### Example 4
 - text: "Files: sign_data.py, edit_text.py, remove_data.py and folders: data, config, src"
 - no_text: "File explorer with the files and folders"
 - description: "The screen displays files sign_data.py, edit_text.py, remove_data.py and folders data, config, src."
-- voice: "The screen displays python script sign data, edit text, remove data and folders data, configiguration and source code."
+- voice: "The screen displays python scripts for signing, editing and deleting data, and folders for data, configiguration and source code."
 """
         },
         {
