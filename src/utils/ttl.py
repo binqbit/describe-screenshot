@@ -1,4 +1,6 @@
 import os
+import threading
+import uuid
 from gtts import gTTS
 import numpy as np
 import librosa
@@ -22,3 +24,17 @@ def play_audio(filename):
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
     pygame.mixer.quit()
+
+def play_text(text, path, is_wait = True):
+    def play_text_thread(text, path):
+        filename = f"{path}/file_{uuid.uuid4()}.mp3"
+        try:
+            text_to_audio(text, filename)
+            play_audio(filename)
+        except Exception as e:
+            print("Play text error:", e)
+        os.remove(filename)
+    if is_wait:
+        play_text_thread(text, path)
+    else:
+        threading.Thread(target=play_text_thread, args=(text, path)).start()

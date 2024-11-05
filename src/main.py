@@ -3,12 +3,17 @@ import dotenv
 dotenv.load_dotenv()
 
 from utils.console import print_tab
-from utils.ttl import play_audio, text_to_audio
+from utils.ttl import play_text
 from utils.chatgpt import send_message
 from utils.screenshot_listener import listen_screenshot
 
 LANGUAGE = os.getenv("LANGUAGE")
-TEMP_FILE = "./data/audio.mp3"
+TEMP_FILE = "./data"
+
+def drop_cache():
+    list = os.listdir(TEMP_FILE)
+    for item in list:
+        os.remove(f"{TEMP_FILE}/{item}")
 
 def describe_screenshot(screenshot):
     print("Describing screenshot...")
@@ -155,6 +160,7 @@ Result should be a JSON object with the following structure:
     return res
 
 def main():
+    drop_cache()
     is_voice = "-v" in os.sys.argv
     while True:
         screenshot = listen_screenshot()
@@ -164,8 +170,7 @@ def main():
         print_tab("Content Description", result["description"])
         if is_voice:
             print_tab("Voiced Description", result["voice"])
-            text_to_audio(result["voice"], TEMP_FILE)
-            play_audio(TEMP_FILE)
+            play_text(result["voice"], TEMP_FILE, is_wait=False)
         print()
 
 if __name__ == "__main__":
